@@ -303,6 +303,10 @@ def main(argv=None):
                      dest="cell_number",
                      type="int",
                      help=("Specify the number of cell barcodes to accept"))
+    group.add_option("--allowlist",
+                      dest="allowlist",
+                      type="string",
+                      help=("path to allowlist"))
 
     parser.add_option("--ed-above-threshold",
                       dest="ed_above_threshold", type="choice",
@@ -310,10 +314,7 @@ def main(argv=None):
                       help=("Detect CBs above the threshold which may be "
                             "sequence errors from another CB and either "
                             "'discard' or 'correct'. Default=discard"))
-    group.add_option("--allowlist",
-                      dest="allowlist",
-                      type="string",
-                      help=("path to allowlist"))
+
 
     parser.add_option_group(group)
 
@@ -459,7 +460,9 @@ def main(argv=None):
         options.expect_cells,
         options.cell_number,
         options.error_correct_threshold,
-        options.plot_prefix)
+        options.plot_prefix,
+        options.allowlist
+        )
 
     if cell_whitelist:
         U.info("Top %s cell barcodes passed the selected threshold" %
