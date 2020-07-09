@@ -68,6 +68,12 @@ whitelist_scrb_seq:
       references: [scrb_whitelist.tsv]
       options: whitelist --bc-pattern=CCCCCCNNNNNNNNNN  -L test.log --plot-prefix=knee_plots
 
+whitelist_allowlist:
+      stdin: allow.fastq
+      outputs: [stdout, bla_whitelist.tsv]
+      references: [bla_whitelist.tsv]
+      options: whitelist --bc-pattern=CCCCCCCC -L test.log plot-prefix=knee_plots --allowlist=allowlist.txt --stdout xy.tsv.gz
+
 whitelist_indrop:
       stdin: indrop.fastq.1.gz
       outputs: [stdout]

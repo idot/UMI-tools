@@ -1133,13 +1133,15 @@ def validateExtractOptions(options):
 
     if not extract_umi:
         if options.extract_method == "string":
-            U.warning("barcode pattern(s) do not include any umi bases "
-                    "(marked with 'Ns') %s, %s" % (
-                        options.pattern, options.pattern2))
+            pass
+            #U.warning("barcode pattern(s) do not include any umi bases "
+            #          "(marked with 'Ns') %s, %s" % (
+            #                options.pattern, options.pattern2))
         elif options.extract_method == "regex":
-            U.error("barcode regex(es) do not include any umi groups "
-                    "(starting with 'umi_') %s, %s" (
-                        options.pattern, options.pattern2))
+            pass
+            #U.warning("barcode regex(es) do not include any umi groups "
+            #          "(starting with 'umi_') %s, %s" (
+            #                options.pattern, options.pattern2))
 
     return(extract_cell, extract_umi)
 

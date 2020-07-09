@@ -195,7 +195,20 @@ whitelist-specific options
         barcodes. If N is greater than the number of reads, all reads
         will be used. Default is 100000000 (100 Million).
 
+"""""""""""""""
+``--allowlist``
+"""""""""""""""
+     Allowlist of accepted cell barcodes. The allowlist should be just one column
 
+        AAAAAA
+        AAAATC
+        AAACAT
+        AAACTA
+        AAATAC
+        AAATCA
+        AAATGT
+
+    Where column 1 is the allowlisted cell barcodes
 
 '''
 import sys
@@ -297,6 +310,11 @@ def main(argv=None):
                       help=("Detect CBs above the threshold which may be "
                             "sequence errors from another CB and either "
                             "'discard' or 'correct'. Default=discard"))
+    group.add_option("--allowlist",
+                      dest="allowlist",
+                      type="string",
+                      help=("path to allowlist"))
+
     parser.add_option_group(group)
 
     parser.set_defaults(method="reads",
@@ -314,7 +332,8 @@ def main(argv=None):
                         expect_cells=False,
                         allow_threshold_error=False,
                         cell_number=False,
-                        ed_above_threshold=None)
+                        ed_above_threshold=None,
+                        allowlist=None)
 
     # add common options (-h/--help, ...) and parse command line
 
