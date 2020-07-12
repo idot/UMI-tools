@@ -465,7 +465,6 @@ def getFilteredBarcodes(cell_barcode_counts, allowlist, maxedit=1):
         U.error("filtered counts don't add up. total:"+countstring)
     else:
         U.info("filtered counts correct: "+countstring)
-    print(filtered_cells)
     return (filtered_cells, total_counts, allowed_counts, denied_counts)
 
 
@@ -480,12 +479,10 @@ def getCellWhitelist(cell_barcode_counts,
     if allowlist and error_correct_threshold > 0:
         U.info("Filtering by allowlist and threshold %s" %
                error_correct_threshold)
-        print(cell_barcode_counts)
         allowlist_data = getAllowlist(allowlist)
         (filtered_cells, total_counts, allowed_counts, denied_counts) = getFilteredBarcodes(cell_barcode_counts, allowlist_data, error_correct_threshold)
         error_correct_threshold = 0
         cell_barcode_counts = filtered_cells
-    print("expect_cells "+str(expect_cells)+" cell_number "+str(cell_number))
     if knee_method == "distance":
             cell_whitelist = getKneeEstimateDistance(
                 cell_barcode_counts, cell_number, plotfile_prefix)
