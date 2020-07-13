@@ -446,6 +446,8 @@ def getFilteredBarcodes(cell_barcode_counts, allowlist, maxedit=1):
     for (cell_barcode, count) in cell_barcode_counts.items():
         match = False
         total_counts = total_counts + count
+        if total_counts % 10000 == 0:
+            U.info(f"filtering barcodes: {total_counts}")
         barcode_in_bytes = str(cell_barcode).encode("utf-8")
         for allow_cell in allowlist:
             if barcode_in_bytes in allowlist:
